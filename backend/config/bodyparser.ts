@@ -5,7 +5,7 @@
  * file.
  */
 
-import type { BodyParserConfig } from '@ioc:Adonis/Core/BodyParser'
+import type { BodyParserConfig } from '@ioc:Adonis/Core/BodyParser';
 
 const bodyParserConfig: BodyParserConfig = {
   /*
@@ -32,12 +32,7 @@ const bodyParserConfig: BodyParserConfig = {
     encoding: 'utf-8',
     limit: '1mb',
     strict: true,
-    types: [
-      'application/json',
-      'application/json-patch+json',
-      'application/vnd.api+json',
-      'application/csp-report',
-    ],
+    types: ['application/json', 'application/json-patch+json', 'application/vnd.api+json', 'application/csp-report'],
   },
 
   /*
@@ -200,6 +195,6 @@ const bodyParserConfig: BodyParserConfig = {
     */
     types: ['multipart/form-data'],
   },
-}
+};
 
-export default bodyParserConfig
+export default bodyParserConfig;
