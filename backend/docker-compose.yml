@@ -1,0 +1,44 @@
+version: '3.9'
+
+services:
+  fitcontrol:
+    container_name: app-fitcontrol
+    restart: unless-stopped
+    build:
+      context: .
+      target: dependencies
+    ports:
+      - ${PORT}:${PORT}
+      - 9229:9229
+    env_file:
+      - .env
+    volumes:
+      - ./:/home/node/app
+      # Uncomment the below line if you developing on MacOS
+      #- /home/node/app/node_modules
+    command: dumb-init node ace serve --watch --node-args="--inspect=0.0.0.0"
+
+  postgres:
+    container_name: postgres-fitcontrol
+    image: postgres:15-alpine
+    volumes:
+      - fitcontrol_pg_data:/var/lib/postgresql/data
+      - ./dockerConfig/postgres-dev-init.sql:/docker-entrypoint-initdb.d/init.sql # db auto setup
+    environment:
+      POSTGRES_DB: ${PG_DB_NAME}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+    ports:
+      - ${PG_PORT}:5432
+
+  redis:
+    container_name: redis-fitcontrol
+    image: redis:7-alpine
+    volumes:
+      - fitcontrol_redis_data:/data
+    ports:
+      - ${REDIS_PORT}:6379
+
+volumes:
+  fitcontrol_pg_data:
+  fitcontrol_redis_data:
