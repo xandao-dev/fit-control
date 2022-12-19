@@ -5,7 +5,7 @@
  * file.
  */
 
-import Teacher from 'App/Models/Teacher'
+import Teacher from 'App/Models/Teacher';
 
 declare module '@ioc:Adonis/Addons/Auth' {
   /*
@@ -34,9 +34,9 @@ declare module '@ioc:Adonis/Addons/Auth' {
     |
     */
     user: {
-      implementation: LucidProviderContract<typeof Teacher>
-      config: LucidProviderConfig<typeof Teacher>
-    }
+      implementation: LucidProviderContract<typeof Teacher>;
+      config: LucidProviderConfig<typeof Teacher>;
+    };
   }
 
   /*
@@ -65,10 +65,10 @@ declare module '@ioc:Adonis/Addons/Auth' {
     |
     */
     web: {
-      implementation: SessionGuardContract<'user', 'web'>
-      config: SessionGuardConfig<'user'>
-      client: SessionClientContract<'user'>
-    }
+      implementation: SessionGuardContract<'user', 'web'>;
+      config: SessionGuardConfig<'user'>;
+      client: SessionClientContract<'user'>;
+    };
     /*
     |--------------------------------------------------------------------------
     | OAT Guard
@@ -79,10 +79,10 @@ declare module '@ioc:Adonis/Addons/Auth' {
     |
     */
     api: {
-      implementation: OATGuardContract<'user', 'api'>
-      config: OATGuardConfig<'user'>
-      client: OATClientContract<'user'>
-    }
+      implementation: OATGuardContract<'user', 'api'>;
+      config: OATGuardConfig<'user'>;
+      client: OATClientContract<'user'>;
+    };
     /*
     |--------------------------------------------------------------------------
     | Basic Auth Guard
@@ -93,9 +93,9 @@ declare module '@ioc:Adonis/Addons/Auth' {
     |
     */
     basic: {
-      implementation: BasicAuthGuardContract<'user', 'basic'>
-      config: BasicAuthGuardConfig<'user'>
-      client: BasicAuthClientContract<'user'>
-    }
+      implementation: BasicAuthGuardContract<'user', 'basic'>;
+      config: BasicAuthGuardConfig<'user'>;
+      client: BasicAuthClientContract<'user'>;
+    };
   }
 }
